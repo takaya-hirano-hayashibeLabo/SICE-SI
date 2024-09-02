@@ -1,0 +1,54 @@
+\documentclass{sice-si}
+
+\def\LuaLaTeX{Lua\LaTeX}
+\def\upLaTeX{up\LaTeX}
+\def\pTeX{p\TeX}
+\def\SICEcls{sice.cls}
+
+\newcommand{\TeXEngine}{unknown}
+\ifluatex
+    \renewcommand{\TeXEngine}{\LuaLaTeX}
+\else
+    \ifuptex
+        \renewcommand{\TeXEngine}{\upLaTeX}
+    \fi
+\fi
+
+\addbibresource{references.bib}
+
+% タイトルと著者名
+\title{SICE SI 予稿原稿の書き方（サンプル）} % 和文タイトル
+\name{○計測 太郎（計測自動制御学会），制御 花子（計測自動制御学会）} % 著者名
+\etitle{Instruction for SICE SI Annual Conference Manuscript} % 英文タイトル
+\ename{○Taro KEISOKU (SICE), and Hanako SEIGYO (SICE)}	%著者名（英）
+
+\begin{document}
+% アブストラクト
+\abst{
+    This manuscript describes a method for preparing a manuscript for the annual conference of the SICE SI division.
+    This file is built with \TeXEngine.
+}
+
+\date{} % 日付を出力しない
+% タイトルの出力
+\maketitle
+
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+
+% >> 内容 >>
+% \input{sections/sample.tex}
+\input{sections/section1/section1.tex}
+\input{sections/section2/section2.tex}
+\input{sections/section3/section3.tex}
+\input{sections/section4/section4.tex}
+\input{sections/section5/section5.tex}
+\input{sections/section6/section6.tex}
+% >> 内容 >>
+
+% \bibliographystyle{junsrt} %junsrt → 引用順
+\printbibliography[title=参考文献]
+
+\end{document}
