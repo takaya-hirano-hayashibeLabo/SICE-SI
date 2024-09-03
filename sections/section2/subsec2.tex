@@ -1,2 +1,71 @@
 \makeatletter % @が使える
-\subsection{入力スパイクのタイムスケール変動とSNNの内部状態ダイナミクスの関係}
+\subsection{入力スパイク列のタイムスケール変動とSNNの内部状態ダイナミクスの関係}
+
+%>> 最初の一文なんて始めるかピンとこない >>
+入力スパイク列$o(t)$のタイムスケール変動に対して, 時定数$\tau$と膜抵抗$r$を変化させることで, SNNの内部状態$v(t)$のダイナミクスの崩れ？を吸収できることを示す.
+%>> 最初の一文なんて始めるかピンとこない >>
+
+まず, 入力スパイク列のタイムスケールが変動したときの理想的なSNN内部状態$v$について考える.
+入力スパイク列$o(t)$を時間方向に$a$倍伸縮したものを$o(at)$とする.
+理想的には, 入力の時間方向への$a$倍のスケーリングに対して, SNNの内部状態も$a$倍にスケーリングされる.
+LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のようになる.
+
+\begin{equation}
+    \begin{split}
+        % \tau \frac{dv(at)}{dt} &= -(v(at)-V_{rest}) + ri(at)\\
+        \tau \frac{dv(at)}{dt} &= -(v(at)-V_{rest}) + r(w o(at) + b)
+    \end{split}
+    \label{sec2:eq:ideal}
+\end{equation}
+
+ここで, $v(at)$は時間方向に$a$倍された理想的なSNNの内部状態であり, $\tau,~r$は理想状態における時定数と膜電位である.
+また, 簡単のためSNNの1つのニューロンについてのみ考える.
+さらに, \refeqn{sec2:eq:ideal}をラプラス変換によって$s$領域に変換すると\refeqn{sec2:eq:ideal_laplace}のように表せる.
+
+\begin{equation}
+    \begin{split}
+        V(\frac{s}{a}) &= \frac{1}{\tau s+1}(\frac{a V_{rest}}{s}+r w O(\frac{s}{a})+\frac{ar}{s}b)\\
+        &= \frac{1}{\tau s+1}(\frac{a V_{rest}}{s}+r w +\frac{ar}{s}b)
+    \end{split}
+    \label{sec2:eq:ideal_laplace}
+\end{equation}
+ここで, $v(t),~o(t)$のラプラス変換を$V(s), ~ O(s)$とする.
+さらに, 入力スパイク列$o(t)$は0か1の離散パルス値であり, ディラックのデルタ関数$\delta(t)$で表現できる\cite{Henkes2024}ため$O(s)\simeq1$と近似する.
+
+次に, 実際のSNNの内部状態について考える.
+実際の内部状態は, 入力スパイク列$o(at)$に対して, $a$倍のタイムスケーリングが生じるとは限らない.
+そのため, 内部状態は$v(t)$と表され, LIFモデルを用いると\refeqn{sec2:eq:actual}のようになる.
+\begin{equation}
+    \begin{split}
+        % \tau \frac{dv(at)}{dt} &= -(v(at)-V_{rest}) + ri(at)\\
+        \tau' \frac{dv(t)}{dt} &= -(v(t)-V_{rest}) + r'(w o(at) + b)
+    \end{split}
+    \label{sec2:eq:actual}
+\end{equation}
+ここで,$\tau',~r'$は実際の状態における時定数と膜抵抗である.
+理想的な場合と同様に, \refeqn{sec2:eq:actual}に対してラプラス変換を行うと\refeqn{sec2:eq:actual_laplace}となる.
+\begin{equation}
+    \begin{split}
+        V(s) &= \frac{1}{\tau' s+1}(\frac{V_{rest}}{s}+\frac{r'}{a} w O(\frac{s}{a})+\frac{r'}{s}b)
+    \end{split}
+    \label{sec2:eq:actual_laplace}
+\end{equation}
+さらに, \refeqn{sec2:eq:actual_laplace}における$s$を$s/a$に置き換え, $O(s)\simeq1$の近似を用いると, \refeqn{sec2:eq:actual_laplace2}となる.
+\begin{equation}
+    \begin{split}
+        V(\frac{s}{a}) &= \frac{1}{\frac{\tau'}{a} s+1}(\frac{aV_{rest}}{s}+\frac{r'}{a} w+\frac{a r'}{s}b)
+    \end{split}
+    \label{sec2:eq:actual_laplace2}
+\end{equation}
+
+ここで, 実際の内部状態式\refeqn{sec2:eq:actual_laplace2}と理想の内部状態式\refeqn{sec2:eq:ideal_laplace}を比較することで, SNNの内部状態を理想状態にするための\refeqn{sec2:eq:condition}に示す条件が得られる.
+\begin{equation}
+    \begin{split}
+        \tau'&=a \tau\\
+        r'&=ar \\
+        b&=0
+    \end{split}
+    \label{sec2:eq:condition}
+\end{equation}
+したがって, バイアス$\bm{b}=0$のニューラルネットワークで構成されたSNNに対して, 時間方向に$a$倍されたスパイク列が入力されたとき, LIFモデルの時定数$\tau$および膜抵抗$r$を$a$倍することで, SNNの内部状態$\bm{v}$のダイナミクスを$a$倍のタイムスケーリングすることが可能となる.
+
