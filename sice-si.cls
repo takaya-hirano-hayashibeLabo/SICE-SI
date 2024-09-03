@@ -127,6 +127,10 @@
     \FigTable[#1]{Table}{#2}%
 }
 
+%式用のマクロ
+% `\textbf'で太文字. `~'で小さい空白
+\def\refeqn#1{\textbf{{Eq.~}\ref{#1}}}
+
 % sectionのフォントサイズを11ptに変更
 \RenewBlockHeading{section}{1}{font={\fontsize{12pt}{12pt}\selectfont\bfseries\raggedright}}
 \RenewBlockHeading{subsection}{2}{font={\fontsize{11pt}{11pt}\selectfont\bfseries\raggedright}}
