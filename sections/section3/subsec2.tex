@@ -1,3 +1,55 @@
 \makeatletter % @が使える
-\subsection{SUBTITLE}
-ああああああああああああああああああああああああああああああああああああああああああああああああああ
+\subsection{実験2 時系列認識におけるロバスト性評価}
+
+\subsubsection{データセット}
+モデルの学習データセットとしてDVSGesture\cite{dvsgesture}を用いる.
+DVSGestureデータセットは11種類のジェスチャーを時系列に記録したデータセットである.
+また, データ形式はイベント形式で保存されており, ジェスチャーによって変化が生じた時刻とピクセル位置がペアとして保存されている.
+イベントが生じた時刻・ピクセル位置を1, それ以外を0とすることで容易にスパイク列へ変換することが可能であるため, SNNを用いたタスク評価に適したデータセットである\cite{9207109}.
+
+\subsubsection{時系列認識モデルとその学習}
+提案手法のモデルに対して, DVSGesuteデータセットを用いた時系列認識タスクを学習させる.
+また, 比較対象としてLSTM, SNN, Parametric-SNN\cite{ParametricSNN}で構成したモデルについても同様のタスクを学習させる.
+Parametric-SNNとは, 時定数を学習可能としたSNNであり, 推論時は学習によって得られた時定数を用いる.
+LSTMで構成したモデルは, ResNet\cite{ResNet}を用いてフレームごとの特徴抽出を行い, LSTMによって時系列認識を行った\cite{CNNLSTM}.
+SNNを用いたモデルはSNNで残差接続を実現したMS-ResNet\cite{MSResNet}を用いて構成した.
+また, 畳み込み層間のドロップアウト率は0.3とした.
+それぞれのモデル構成を\Table{tab:sec3:modelarchi}に示す.
+
+\begin{table}[htb]
+    \centering
+    \caption{評価モデル構成}
+    \label{tab:sec3:modelarchi}
+
+    % \begin{tabularx}{1.1\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    \begin{tabular}{ccccc}
+        \multicolumn{5}{c}{\textbf{Model architecture using LSTM}}\\
+        \hline
+        \textbf{Layer} & \textbf{Type} & \textbf{Input} & \textbf{output} & \textbf{Layer Nums} \\
+        \hline
+        1 & ResNet & 2x32x32 & 12x16x16 & 3 \\
+        2 & ResNet & 12x16x16 & 32x8x8 & 3 \\
+        3 & Linear & 2048 & 512 & - \\
+        4 & LSTM & 512 & 512 & - \\
+        5 & LSTM & 512 & 256 & - \\
+        6 & Linear & 256 & 11 & - \\
+    \end{tabular}
+    
+    % \begin{tabularx}{1.1\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    \begin{tabular}{ccccc}
+        \multicolumn{5}{c}{\textbf{Model architecture using SNN}}\\
+        \hline
+        \textbf{Layer} & \textbf{Type} & \textbf{Input} & \textbf{output} & \textbf{Layer Nums} \\
+        \hline
+        1 & MS-ResNet & 2x32x32 & 12x16x16 & 3 \\
+        2 & MS-ResNet & 12x16x16 & 32x8x8 & 3 \\
+        3 & Linear & 2048 & 512 & - \\
+        4 & Linear & 512 & 11 & - \\
+    \end{tabular}
+
+\end{table}
+
+
+LSTM, SNN, Parametric-SNNは, $0.5,~1.0,~2.0$倍の3種類のタイムスケールのものを用いて, 11種類のジェスチャーを分類するモデルを学習させる.
+一方, 提案手法のモデルのみ$1.0$倍速のデータだけを用いてモデルの学習を行う.
+DVSGestureデータセットは, 3 msでサンプリングされ, $1.0$倍速で約1.0秒の長さのものを用いた.
