@@ -12,8 +12,8 @@ LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のよう�
 
 \begin{equation}
     \begin{split}
-        % \tau \frac{dv(at)}{dt} &= -(v(at)-V_{rest}) + ri(at)\\
-        \tau \frac{dv(at)}{dt} &= -(v(at)-V_{rest}) + r(w o(at) + b)
+        % \tau \frac{dv(at)}{dt} &= -(v(at)-v_{rest}) + ri(at)\\
+        \tau \frac{dv(at)}{dt} &= -(v(at)-v_{rest}) + r(w o(at) + b)
     \end{split}
     \label{sec2:eq:ideal}
 \end{equation}
@@ -24,8 +24,8 @@ LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のよう�
 
 \begin{equation}
     \begin{split}
-        V(\frac{s}{a}) &= \frac{1}{\tau s+1}(\frac{a V_{rest}}{s}+r w O(\frac{s}{a})+\frac{ar}{s}b)\\
-        &= \frac{1}{\tau s+1}(\frac{a V_{rest}}{s}+r w +\frac{ar}{s}b)
+        V(\frac{s}{a}) &= \frac{1}{\tau s+1}(\frac{a v_{rest}}{s}+r w O(\frac{s}{a})+\frac{ar}{s}b)\\
+        &= \frac{1}{\tau s+1}(\frac{a v_{rest}}{s}+r w +\frac{ar}{s}b)
     \end{split}
     \label{sec2:eq:ideal_laplace}
 \end{equation}
@@ -37,8 +37,8 @@ LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のよう�
 そのため, 内部状態は$v(t)$と表され, LIFモデルを用いると\refeqn{sec2:eq:actual}のようになる.
 \begin{equation}
     \begin{split}
-        % \tau \frac{dv(at)}{dt} &= -(v(at)-V_{rest}) + ri(at)\\
-        \tau' \frac{dv(t)}{dt} &= -(v(t)-V_{rest}) + r'(w o(at) + b)
+        % \tau \frac{dv(at)}{dt} &= -(v(at)-v_{rest}) + ri(at)\\
+        \tau' \frac{dv(t)}{dt} &= -(v(t)-v_{rest}) + r'(w o(at) + b)
     \end{split}
     \label{sec2:eq:actual}
 \end{equation}
@@ -46,14 +46,14 @@ LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のよう�
 理想的な場合と同様に, \refeqn{sec2:eq:actual}に対してラプラス変換を行うと\refeqn{sec2:eq:actual_laplace}となる.
 \begin{equation}
     \begin{split}
-        V(s) &= \frac{1}{\tau' s+1}(\frac{V_{rest}}{s}+\frac{r'}{a} w O(\frac{s}{a})+\frac{r'}{s}b)
+        V(s) &= \frac{1}{\tau' s+1}(\frac{v_{rest}}{s}+\frac{r'}{a} w O(\frac{s}{a})+\frac{r'}{s}b)
     \end{split}
     \label{sec2:eq:actual_laplace}
 \end{equation}
 さらに, \refeqn{sec2:eq:actual_laplace}における$s$を$s/a$に置き換え, $O(s)\simeq1$の近似を用いると, \refeqn{sec2:eq:actual_laplace2}となる.
 \begin{equation}
     \begin{split}
-        V(\frac{s}{a}) &= \frac{1}{\frac{\tau'}{a} s+1}(\frac{aV_{rest}}{s}+\frac{r'}{a} w+\frac{a r'}{s}b)
+        V(\frac{s}{a}) &= \frac{1}{\frac{\tau'}{a} s+1}(\frac{av_{rest}}{s}+\frac{r'}{a} w+\frac{a r'}{s}b)
     \end{split}
     \label{sec2:eq:actual_laplace2}
 \end{equation}

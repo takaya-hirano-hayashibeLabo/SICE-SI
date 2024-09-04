@@ -21,19 +21,19 @@ Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣
 次に, 第$l$層のSNNの内部状態$\bm{v_t^l}$は, 神経細胞の活動をモデル化したLeaky Integrate-and-Fire (LIF) モデル (\refeqn{eq:lif}) によって更新される.
 
 \begin{equation}
-    {\tau}\frac{d\bm{v_t^l}}{dt}=-(\bm{v_{t-1}^l}-V_{rest})+r\bm{i_t^l}
+    {\tau}\frac{d\bm{v_t^l}}{dt}=-(\bm{v_{t-1}^l}-v_{rest})+r\bm{i_t^l}
     \label{eq:lif}
 \end{equation}
-ここで, $\tau$は神経細胞の時定数, $V_{rest}$は内部状態の初期状態, $r$は神経細胞の膜抵抗である.
+ここで, $\tau$は神経細胞の時定数, $v_{rest}$は内部状態の初期状態, $r$は神経細胞の膜抵抗である.
 
-最後に, 内部状態$v_t^l$が一定の閾値$V_{threshold}$を超えたときに出力スパイク$\bm{o_t^l}$が1となって出力される (\refeqn{eq:outputSpike}).
+最後に, 内部状態$v_t^l$が一定の閾値$v_{th}$を超えたときに出力スパイク$\bm{o_t^l}$が1となって出力される (\refeqn{eq:outputSpike}).
 また, 閾値を超えた内部状態は初期状態へとリセットされる (\refeqn{eq:outputSpike2}).
 \begin{equation}
     \begin{split}
       \bm{o_t^{l}}&=\left\{
         \begin{alignedat}{2}
-          1 &\:(\bm{v_t^l}{\geq}V_{threshold})\\
-          0 &\:(\bm{v_t^l}{\leq}V_{threshold})
+          1 &\:(\bm{v_t^l}{\geq}v_{th})\\
+          0 &\:(\bm{v_t^l}{\leq}v_{th})
         \end{alignedat}
       \right. 
     \end{split} \label{eq:outputSpike}
@@ -44,8 +44,8 @@ Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣
     where\\
     h(x)&=\left\{
       \begin{alignedat}{2}
-        &V_{reset} &\:(x{\geq}V_{threshold})\\
-        &x &\:(x{\leq}V_{threshold})
+        &v_{rset} &\:(x{\geq}v_{th})\\
+        &x &\:(x{\leq}v_{th})
       \end{alignedat}
     \right. 
     \end{split} \label{eq:outputSpike2}

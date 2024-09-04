@@ -1,3 +1,31 @@
 \makeatletter % @が使える
-\subsection{SUBTITLE}
-ああああああああああああああああああああああああああああああああああああああああああああああああああ
+\subsection{実験1 SNNの内部状態ダイナミクスのタイムスケーリング評価}
+ランダムな値で重みを初期化したSNNに対し, 基準となるスパイク列$\bm{o_{base}}$と基準から$a$倍のタイムスケーリングしたスパイク列$\bm{o_{scaled}}$を入力する.
+$\bm{o_{base}},~\bm{o_{scaled}}$が入力されたときの最終層の内部状態$\bm{v_{base}}, ~ \bm{v_{scaled}}$を比較する.
+このとき, \refeqn{sec2:eq:ideal_laplace}の条件をSNNに与えることで$\bm{v_{scaled}}$が$\bm{v_{base}}$に近づくことを実験的に示す.
+SNNは入出力を1次元とし, ノード数8の全結合層を2層持つモデルを用いた.
+SNNのそれぞれのパラメータを\Table{sec3:tab:exp1snn}に示す.
+
+
+% tabularxによって\linewidthで幅指定可能に (required: tabularx)
+% \centering\arraybackslashによって, 各セルの中央に値を表示 (required: array)
+\begin{table}[htb]
+    \centering
+    \caption{SNNモデルパラメータ}
+    \label{sec3:tab:exp1snn}
+    \begin{tabularx}{0.8\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+        \multicolumn{3}{c}{SNN architecture}\\
+        \hline
+        input size& hidden size & output size\\
+        \hline
+        1   & 8, 8 & 1 
+    \end{tabularx}
+
+    \begin{tabularx}{0.8\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+        \multicolumn{5}{c}{LIF parameters}\\
+        \hline
+        $dt$&$v_{rest}$&$v_{th}$&$\tau$&$r$\\
+        \hline
+        0.001&0.0&0.01&0.05&1.0
+    \end{tabularx}
+\end{table}
