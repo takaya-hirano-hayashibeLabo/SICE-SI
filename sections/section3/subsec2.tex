@@ -1,5 +1,5 @@
 \makeatletter % @が使える
-\subsection{実験2 時系列認識におけるロバスト性評価}
+\subsection{実験2 時間変動に対するロバスト性評価}
 
 \subsubsection{データセット}
 モデルの学習データセットとしてDVSGesture\cite{dvsgesture}を用いる.
@@ -47,9 +47,48 @@ SNNを用いたモデルはSNNで残差接続を実現したMS-ResNet\cite{MSRes
         4 & Linear & 512 & 11 & - \\
     \end{tabular}
 
+    \begin{tabularx}{0.8\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+        \multicolumn{5}{c}{\textbf{LIF parameters}}\\
+        \hline
+        $\bm{dt}$&$\bm{v_{rest}}$&$\bm{v_{th}}$&$\bm{\tau}$&$\bm{r}$\\
+        \hline
+        0.003&0.0&0.1&0.006&1.0
+    \end{tabularx}
+
 \end{table}
 
 
 LSTM, SNN, Parametric-SNNは, $0.5,~1.0,~2.0$倍の3種類のタイムスケールのものを用いて, 11種類のジェスチャーを分類するモデルを学習させる.
 一方, 提案手法のモデルのみ$1.0$倍速のデータだけを用いてモデルの学習を行う.
 DVSGestureデータセットは, 3 msでサンプリングされ, $1.0$倍速で約1.0秒の長さのものを用いた.
+
+
+\subsubsection{評価方法}
+提案手法の入力の時間的変動に対する頑健性を評価するために以下の2つの実験を行った.
+\begin{itemize}
+    \item 入力シーケンス全体を$a$倍した際のモデル精度評価
+    \item 入力シーケンスの前半を$a_1$, 後半を$a_2$倍した際のモデル性能評価
+\end{itemize}
+
+まず, 入力シーケンス全体を$a$にタイムスケーリングしすることで, 入力の時間変動に対する各モデルの性能を評価した.
+倍率$a$は, $1.0$から$20.0$を$1.0$刻みに変化させた値とした.
+また, 入力シーケンスの前半を$a_1$倍, 後半を$a_2$倍にスケールすることで, シーケンスの途中で時間変動が生じた場合の各モデルの性能を評価した.
+$a_1,~a_2$はそれぞれ\Table{sec3:tab:exp2:2}に示す値を用いた.
+
+\begin{table}[htb]
+    \centering
+    \caption{倍率$a_1,~a_2$の組み合わせ}
+
+    \begin{tabularx}{0.8\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+        \hline
+        \textbf{Pattern}&$\bm{a_1}$&$\bm{a_2}$\\
+        \hline
+        A&1.0&5.0\\
+        B&5.0&1.0\\
+        C&10.0&5.0\\
+        D&5.0&10.0
+    \end{tabularx}
+
+    \label{sec3:tab:exp2:2}
+
+\end{table}
