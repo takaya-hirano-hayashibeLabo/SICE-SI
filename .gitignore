@@ -2,3 +2,5 @@ samples
 sample.*
 main.*
 !main.tex
+*.pdf
+*eps*

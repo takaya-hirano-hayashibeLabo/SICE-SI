@@ -1,28 +1,34 @@
 % 図をきれいに配置したいだけならparboxを使う (Fgi1, Fig2としたいとき)
 % 関連する図をきれいに配置するときはminipageを使う (Fig1(a), (b)としたいとき)
 
-\begin{figure*}[htbp]
+\begin{figure*}[t]
     \centering
 
     \parbox{.9 \linewidth}{
         \centering
-        \includegraphics[width=1 \linewidth]{static/samples/dummy.png}
+        % svgのままコンパイルするならこれ. コンパイルは`lualatex --shell-escape`を使う(required: svg, fontspec)
+        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec2_model}
         \caption{モデル構造}
         \label{sec2:fig:model}
     }
     
     \vspace{1em} % 図の間にスペースを追加
 
-    \parbox{.45\linewidth}{
+    \parbox{.9\linewidth}{
         \centering
-        \includegraphics[width=1 \linewidth]{static/samples/dummy.png}
+        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec2_snn_horizontal}
         \caption{SNNの流れ}
         \label{sec2:fig:snn}
     }
-    \parbox{.45\linewidth}{
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \parbox{.9\linewidth}{
         \centering
-        \includegraphics[width=1 \linewidth]{static/samples/dummy.png}
+        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec2_laplace}
         \caption{入力スパイクのタイムスケーリング}
         \label{sec2:fig:inspike}
     }
+
 \end{figure*}
