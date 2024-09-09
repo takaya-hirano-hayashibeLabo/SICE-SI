@@ -1,0 +1,34 @@
+\begin{figure*}[t]
+    \centering
+
+    \parbox{.9 \linewidth}{
+        \centering
+        % svgのままコンパイルするならこれ. コンパイルは`lualatex --shell-escape`を使う(required: svg, fontspec)
+        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec4_exp1}
+        \caption{入力のタイムスケール変動とSNNの内部状態変化}
+        \label{sec4:fig:exp1}
+    }
+    
+    \vspace{0.5em} % 図の間にスペースを追加
+
+    \parbox{.9\linewidth}{
+        \centering
+
+        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
+            \centering
+            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec4_exp2.1}
+            \subcaption{シーケンス全体変化に対するモデル精度}
+            \label{sec4:fig:exp2:1}
+        \end{minipage}
+        \hspace{0.02\linewidth} % これがないと横並びにならない
+        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
+            \centering
+            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec4_exp2.2}
+            \subcaption{シーケンス途中変化に対するモデル精度}
+            \label{sec4:fig:exp2:2}    
+        \end{minipage}    
+
+        \caption{入力のタイムスケール変動とモデル精度}
+    }
+
+\end{figure*}
