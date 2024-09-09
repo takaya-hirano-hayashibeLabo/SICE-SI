@@ -7,6 +7,17 @@ DVSGestureデータセットは11種類のジェスチャーを時系列に記�
 また, データ形式はイベント形式で保存されており, ジェスチャーによって変化が生じた時刻とピクセル位置がペアとして保存されている.
 イベントが生じた時刻・ピクセル位置を1, それ以外を0とすることで容易にスパイク列へ変換することが可能であるため, SNNを用いたタスク評価に適したデータセットである\cite{9207109}.
 
+\begin{figure*}[t]
+    \centering
+    \parbox{.9\linewidth}{
+        \centering
+        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec3_gesture}
+        \caption{ジェスチャーデータの例 (右腕を大きく回す動作) : イベント形式のため動作の大きい腕の情報が多く記録されている}
+        \label{sec3:fig:gesture}
+    }
+
+\end{figure*}
+
 \subsubsection{時系列認識モデルとその学習}
 提案手法のモデルに対して, DVSGesuteデータセットを用いた時系列認識タスクを学習させる.
 また, 比較対象としてLSTM, SNN, Parametric-SNN\cite{ParametricSNN}で構成したモデルについても同様のタスクを学習させる.
