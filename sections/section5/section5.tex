@@ -1,4 +1,42 @@
 \section{考察}
-\input{sections/section5/subsec1.tex}
-\input{sections/section5/subsec2.tex}
-\input{sections/section5/subsec3.tex}
+
+\begin{figure*}
+    \centering
+    \parbox{1.0\linewidth}{
+        \centering
+
+        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
+            \centering
+            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec5_fr_snn}
+            \subcaption{SNNの出力層におけるスパイク密度}
+            \label{sec5:fig:snn}
+        \end{minipage}
+        \hspace{0.02\linewidth} % これがないと横並びにならない
+        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
+            \centering
+            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec5_fr_dyna}
+            \subcaption{提案手法モデルの出力層におけるスパイク密度}
+            \label{sec5:fig:dyna}    
+        \end{minipage}    
+
+        \caption{出力スパイク密度の比較}
+    }
+\end{figure*}
+
+実験2で結果が出たこと言う
+
+提案をつかうことで, 入力が時間変動しても出力の変化が小さかったからだと思う的なことを書く
+
+グラフを示す
+SNNはニューロンん出力パターンが, 時間変動によって大きく変わる
+一方で, 提案手法は活動の多い\#4, \#10のニューロンのパターンが変わっていない
+これは, 条件付けによって, SNNの内部状態ダイナミクスを制御することで, 出力パターンも制御されたから的な事かくか
+一方で, 多少活性化していた\#11が消えたり, 全く活性化していなかった\#6が活性したりしている
+これは, 実際のデータのタイムスケーリングと理想的なスパイクのタイムスケーリングは異なるから
+理想的には時刻$t$のスパイクは$a$倍のタイムスケールで$at$に移動してほしい
+しかし, 実際にはそのような理想的な挙動はしないため, 内部状態のダイナミクスが実験1ほどきれいにいかず, このような結果になったと考えられる.
+そのため, SNNに入力する前に, 理想的な挙動を示すスパイクへと変換するエンコーダを導入することで, より入力の時間変動に頑健なモデルを構築できると考えられる.てきなこと書く
+
+% \input{sections/section5/subsec1.tex}
+% \input{sections/section5/subsec2.tex}
+% \input{sections/section5/subsec3.tex}
