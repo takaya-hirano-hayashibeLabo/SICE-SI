@@ -4,7 +4,7 @@
 \begin{figure*}[t]
     \centering
 
-    \parbox{.9 \linewidth}{
+    \parbox{.8 \linewidth}{
         \centering
         % svgのままコンパイルするならこれ. コンパイルは`lualatex --shell-escape`を使う(required: svg, fontspec)
         \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec2_model}
@@ -14,7 +14,7 @@
     
     \vspace{1em} % 図の間にスペースを追加
 
-    \parbox{.9\linewidth}{
+    \parbox{.8\linewidth}{
         \centering
         \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec2_snn_horizontal}
         \caption{SNNにおける情報処理}
@@ -22,13 +22,3 @@
     }
 \end{figure*}
 
-\begin{figure*}[t]
-    \centering
-    \parbox{.9\linewidth}{
-        \centering
-        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec2_laplace}
-        \caption{入力のタイムスケーリングとSNN内部状態ダイナミクス}
-        \label{sec2:fig:inspike}
-    }
-
-\end{figure*}

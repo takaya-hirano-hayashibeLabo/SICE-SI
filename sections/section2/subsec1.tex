@@ -1,13 +1,13 @@
 \makeatletter % @が使える
 \subsection{Spiking Neural Network}
 Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣し, 0か1のスパイク値を入出力とするニューラルネットワークである.
-時刻$t$における第$l-1$層から$l$層のSNNへの入力スパイク$\bm{o^{l-1}(t)}$は, 以下の3つのステップで処理され, 次の第$l+1$層へ出力される (\Fig{sec2:fig:snn}).
+時刻$t$における第$l-1$層から$l$層のSNNへの入力$\bm{o^{l-1}(t)}$は, \Fig{sec2:fig:snn}に示すように処理され, 次の第$l+1$層へ出力される.
 
-\begin{enumerate}
-    \item 入力スパイク$\bm{o^{l-1}(t)}$への重み付け
-    \item 入力に基づくSNNの内部状態の更新
-    \item 内部状態に基づくスパイク$\bm{o^l(t)}$の出力
-\end{enumerate}
+% \begin{enumerate}
+%     \item 入力スパイク$\bm{o^{l-1}(t)}$への重み付け
+%     \item 入力に基づくSNNの内部状態の更新
+%     \item 内部状態に基づくスパイク$\bm{o^l(t)}$の出力
+% \end{enumerate}
 
 
 まず, SNNへ入力されたスパイク$\bm{o^{l-1}(t)}$は\refeqn{eq:input_spike}によって重み付けされシナプス電流$\bm{i^l(t)}$へ変換される.
@@ -33,7 +33,7 @@ Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣
       \bm{o(t)^{l}}&=\left\{
         \begin{alignedat}{2}
           1 &\:(\bm{v^l(t)}{\geq}v_{th})\\
-          0 &\:(\bm{v^l(t)}{\leq}v_{th})
+          0 &\:(\bm{v^l(t)}{<}v_{th})
         \end{alignedat}
       \right. 
     \end{split} \label{eq:outputSpike}
@@ -45,7 +45,7 @@ Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣
     h(x)&=\left\{
       \begin{alignedat}{2}
         &v_{rset} &\:(x{\geq}v_{th})\\
-        &x &\:(x{\leq}v_{th})
+        &x &\:(x{<}v_{th})
       \end{alignedat}
     \right. 
     \end{split} \label{eq:outputSpike2}

@@ -1,5 +1,5 @@
 \makeatletter % @が使える
-\subsection{入力スパイク列のタイムスケール変動とSNNの内部状態ダイナミクスの関係}
+\subsection{入力の時間変動と内部状態の関係}
 
 入力スパイク列$o(t)$のタイムスケール変動に対して, 時定数$\tau$と膜抵抗$r$を変化させることで, SNNの内部状態$v(t)$のダイナミクスの変化を抑えられることを示す (\Fig{sec2:fig:inspike}).
 まず, 入力スパイク列のタイムスケールが変動したときの理想的なSNN内部状態$v$についてである.
@@ -14,9 +14,9 @@ LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のよう�
     \label{sec2:eq:ideal}
 \end{equation}
 
-ここで, $o(at),~v(at)$はそれぞれ時間方向に$a$倍された入力スパイクとSNN内部状態である.
+ここで, $o(at),~v(at)$はそれぞれ時間方向に$a$倍された入力スパイクと内部状態である.
 また, $\tau,~r$は理想状態における時定数と膜電位であり, 簡単のためSNNの1つのニューロンについてのみ考える.
-ラプラス変換によって\refeqn{sec2:eq:ideal}を$s$領域に変換すると\refeqn{sec2:eq:ideal_laplace}のように表せる.
+ラプラス変換により\refeqn{sec2:eq:ideal}を$s$領域に変換すると\refeqn{sec2:eq:ideal_laplace}となる.
 
 \begin{equation}
     \begin{split}

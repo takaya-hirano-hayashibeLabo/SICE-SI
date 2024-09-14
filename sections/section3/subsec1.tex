@@ -1,5 +1,5 @@
 \makeatletter % @が使える
-\subsection{実験1 SNNの内部状態ダイナミクスのタイムスケーリング評価}
+\subsection{実験1 : SNNの内部状態ダイナミクスのタイムスケーリング評価}
 ランダムな値で重みを初期化したSNNに対し, 基準となるスパイク列$\bm{o(t)}$と$a$倍のタイムスケーリングしたスパイク列$\bm{o(at)}$を入力する.
 その後, $\bm{o(t)},~\bm{o(at)}$が入力されたときの最終層におけるそれぞれの内部状態を比較する.
 このとき, \refeqn{sec2:eq:ideal_laplace}の条件をSNNに与えることで, 提案手法$\bm{v_{proposed}(t)}$が理想的な内部状態$\bm{v(at)}$に近づくことを示す (\textbf{\Fig{sec2:fig:inspike}}).
