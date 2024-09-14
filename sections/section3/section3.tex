@@ -1,7 +1,22 @@
 \section{実験方法}
+
+\begin{figure*}[t]
+    \centering
+    \parbox{.9\linewidth}{
+        \centering
+        \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec3_gesture}
+        \caption{ジェスチャーデータの例 (右腕を大きく回す動作) : イベント形式のため動作の大きい腕の情報が多く記録されている}
+        \label{sec3:fig:gesture}
+    }
+
+\end{figure*}
+
 まず, 入力スパイク列の時間的な変動に対して, 時定数と膜抵抗を\refeqn{sec2:eq:ideal_laplace}に従って変化させることで, SNNの内部状態ダイナミクスの変化が抑制されることを示す.
 次に, 動画形式のデータセットを用いた分類タスクを行う.
 その中で, 提案手法は基準となるタイムスケールの学習のみで, 多様な動画速度に対して頑健な推論が可能であることを示す.
 \input{sections/section3/subsec1.tex}
+
+\input{sections/section4/fig.tex} %画像の位置をいい感じにするために, section4の画像をsection3に移動
+
 \input{sections/section3/subsec2.tex}
 % \input{sections/section3/subsec3.tex}

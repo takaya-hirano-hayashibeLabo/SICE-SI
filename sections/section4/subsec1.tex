@@ -1,16 +1,16 @@
 \makeatletter % @が使える
-\subsection{実験1 入力のタイムスケール変動とSNN内部状態変化}
+\subsection{実験1 : 入力の時間変動とSNN内部状態変化}
 
-\Fig{sec4:fig:exp1}にある入力のタイムスケール変動とSNNの内部状態変化を示す.
+入力の時間変動とSNNの内部状態変化を\Fig{sec4:fig:exp1}に示す.
 $o(t), ~ v(t)$はそれぞれ, 基準となる入力スパイクとSNN内部状態変化である.
-$v(at)$は$v(t)$を線形補間によって$a$倍のタイムスケーリングした理想的な内部状態である.
+$v(at)$は$v(t)$を線形補間によって$a$倍のタイムスケーリングした内部状態である.
 また, $o(at)$は$o(t)$を$a$倍タイムスケールした入力スパイクである.
-$v_{LIF}(t),~ v_{proposed}(t)$はそれぞれ, $o(at)$が入力されたとき通常のSNNの内部状態, 条件\refeqn{sec2:eq:condition}を満たすSNNの内部状態である.
+$v_{LIF}(t),~ v_{proposed}(t)$はそれぞれ, $o(at)$が入力されたとき通常のSNNの内部状態, 提案手法のSNNの内部状態である.
 
-\Table{sec4:tab:exp1}に$v(t)$と$v_{LIF}(t),~ v_{proposed}(t)$それぞれとのMSEを示す.
+\Table{sec4:tab:exp1}に$v(at)$と$v_{LIF}(t),~ v_{proposed}(t)$それぞれとのMSEを示す.
 \begin{table}[htb]
     \centering
-    \caption{基準膜電位との平均二乗誤差}
+    \caption{基準内部状態との平均二乗誤差}
     \label{sec4:tab:exp1}
     \begin{tabular}{cc}
         \hline
@@ -20,7 +20,7 @@ $v_{LIF}(t),~ v_{proposed}(t)$はそれぞれ, $o(at)$が入力されたとき�
     \end{tabular}
 \end{table}
 
-\textbf{\Table{sec4:tab:exp1}}より, 提案手法は通常のSNNの膜電位変化と比較して約58倍MSEが小さくなることがわかる.
-また, \textbf{\Fig{sec4:fig:exp1}}より, $v_{LIF}$は入力のタイムスケールに伴って, そのダイナミクスが変化することがわかる.
-一方で, $v_{proposed}$はダイナミクスの変化は小さく, 単純なタイムスケールに近い状態であることがわかる.
-これらの結果から, 入力のタイムスケール変動に従って, 条件\refeqn{sec2:eq:condition}を満たすように時定数$\tau$と膜抵抗$r$を変化させることで, SNNの内部状態ダイナミクスを変えずにタイムスケーリングすることが可能であると言える.
+\textbf{\Table{sec4:tab:exp1}}より, 提案手法は通常のSNNの内部状態変化と比較して約58倍MSEが小さくなる結果となった.
+また, \textbf{\Fig{sec4:fig:exp1}}より, $v_{LIF}$は入力の時間変化に伴って, そのダイナミクスが変動することがわかる.
+一方で, $v_{proposed}$はダイナミクスの変化が小さく, 単純なタイムスケールに近い状態であることがわかる.
+これらの結果から, 入力のタイムスケール変動に従って, 条件\refeqn{sec2:eq:condition}を満たすように時定数$\tau$と膜抵抗$r$を変化させることで, SNNの内部状態ダイナミクスを抑制し, タイムスケーリングすることが可能であると言える.

@@ -30,18 +30,12 @@
 \ename{○Takaya HIRANO (Tohoku University), Kyo KUTSUZAWA (Tohoku University),\\ Dai OWAKI (Tohoku University), and Mitsuhiro HAYASHIBE (Tohoku University)}	%著者名（英）
 
 \begin{document}
-% アブストラクト
+% アブストラクト (60words以内)
 \abst{
-    Spiking Neural Networks (SNNs) are neural networks that are more similar to the brain's neural circuits than Artificial Neural Networks (ANNs).
-    By using the brain's sparsity, SNNs improve memory efficiency and reduce energy use during computation, making them an important type of neural network.
-    SNNs are similar to brain neuron dynamics by processing spikes of 0 or 1.
-    This allows SNNs to excel at processing time-series information.
-    However, most SNNs use the Leaky Integrate-and-Fire (LIF) model, which has a fixed time constant, limiting their ability to represent different temporal characteristics.
-    Recent studies have introduced trainable time constants in LIF models, improving representation.
-    Despite these improvements, training still requires data with various time scales.
-    This study proposes a SNN with dynamically changing parameters, including time constants, allowing it to adapt to multiple time scales by training on a single time scale.
-    The proposed method maintains high accuracy with time-series data of different time scales and is robust against changes in time scales within the input data.
-}
+    Spiking Neural Networks (SNNs) are similar to brain neural circuits, improving memory efficiency and reducing energy use. 
+    However, traditional SNNs with fixed time constants struggle with varying temporal characteristics. 
+    This study introduces SNNs with dynamic parameters, including time constants, enabling adaptation to multiple time scales from single-scale training, maintaining high accuracy and robustness across different time scales.
+    }
 
 \date{} % 日付を出力しない
 % タイトルの出力

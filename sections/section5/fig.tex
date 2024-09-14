@@ -1,0 +1,24 @@
+\begin{figure*}[t]
+    \centering
+    \parbox{1.0\linewidth}{
+        \centering
+
+        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
+            \centering
+            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec5_fr_snn}
+            \subcaption{SNNの出力層におけるスパイク密度}
+            \label{sec5:fig:snn}
+        \end{minipage}
+        \hspace{0.02\linewidth} % これがないと横並びにならない
+        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
+            \centering
+            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec5_fr_dyna}
+            \subcaption{提案手法モデルの出力層におけるスパイク密度}
+            \label{sec5:fig:dyna}    
+        \end{minipage}    
+
+        \caption{出力スパイク密度の比較}
+        \subcaption*{上段 : タイムスケール$a=1.0$, 下段 : タイムスケール$a=10.0$}
+        \label{sec5:fig:disc}
+    }
+\end{figure*}

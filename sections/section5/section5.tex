@@ -1,29 +1,6 @@
 \section{考察}
 
-\begin{figure*}
-    \centering
-    \parbox{1.0\linewidth}{
-        \centering
-
-        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
-            \centering
-            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec5_fr_snn}
-            \subcaption{SNNの出力層におけるスパイク密度}
-            \label{sec5:fig:snn}
-        \end{minipage}
-        \hspace{0.02\linewidth} % これがないと横並びにならない
-        \begin{minipage}{.48 \linewidth} % Adjusted width to fit side by side
-            \centering
-            \includesvg[width=1 \linewidth, inkscapelatex=false]{static/sec5_fr_dyna}
-            \subcaption{提案手法モデルの出力層におけるスパイク密度}
-            \label{sec5:fig:dyna}    
-        \end{minipage}    
-
-        \caption{出力スパイク密度の比較}
-        \subcaption*{上段 : タイムスケール$a=1.0$, 下段 : タイムスケール$a=10.0$}
-        \label{sec5:fig:disc}
-    }
-\end{figure*}
+% \input{sections/section5/fig.tex} %位置的にsecton4へ移動
 
 実験2より提案手法を用いることで入力の時間変動が生じた場合でも, モデルの精度低下を抑えることが可能であった.
 このような結果になった原因として, 時定数と膜抵抗を動的に変化させることで, 入力の時間変動によるモデルの出力の変化を抑えられたからだと考えられる.

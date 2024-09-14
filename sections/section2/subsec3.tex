@@ -5,7 +5,7 @@
 
 まず, 入力スパイク列$o(t)$のタイムスケール$a$をスパイク密度$\rho$を用いて推定する.
 スパイク密度$\rho$は, ある一定時間$T$のうちに$o(t)=1$である割合を表す.
-推定は線形回帰を用いて近似を行う (\refeqn{sec2:eq:reg}).
+推定は線形回帰を用いた近似によって行う (\refeqn{sec2:eq:reg}).
 \begin{equation}
     \begin{split}
         \rho&=\frac{1}{T} \frac{1}{\Pi_{k=1}^{N}d_k} \sum_t^T \sum_{i_i,..,i_N}o_{t,i_1,..,i_N}\\
