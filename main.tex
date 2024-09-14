@@ -24,16 +24,23 @@
 \addbibresource{references.bib}
 
 % タイトルと著者名
-\title{SICE SI 予稿原稿の書き方（サンプル）} % 和文タイトル
-\name{○計測 太郎（計測自動制御学会），制御 花子（計測自動制御学会）} % 著者名
-\etitle{Instruction for SICE SI Annual Conference Manuscript} % 英文タイトル
-\ename{○Taro KEISOKU (SICE), and Hanako SEIGYO (SICE)}	%著者名（英）
+\title{\textbf{時定数と膜抵抗の動的変動による \\ 広範な時間スケールに頑健なSpiking Neural Networkの構築}} % 和文タイトル
+\name{○平野 貴也 (東北大学), 沓澤 京 (東北大学), 大脇 大 (東北大学), 林部 充宏 (東北大学)} % 著者名
+\etitle{A Spiking Neural Network Robust to a Wide Range of Time Scales \\ through Dynamic Variations in Time Constants and Membrane Resistance} % 英文タイトル
+\ename{○Takaya HIRANO (Tohoku University), Kyo KUTSUZAWA (Tohoku University),\\ Dai OWAKI (Tohoku University), and Mitsuhiro HAYASHIBE (Tohoku University)}	%著者名（英）
 
 \begin{document}
 % アブストラクト
 \abst{
-    This manuscript describes a method for preparing a manuscript for the annual conference of the SICE SI division.
-    This file is built with \TeXEngine.
+    Spiking Neural Networks (SNNs) are neural networks that are more similar to the brain's neural circuits than Artificial Neural Networks (ANNs).
+    By using the brain's sparsity, SNNs improve memory efficiency and reduce energy use during computation, making them an important type of neural network.
+    SNNs are similar to brain neuron dynamics by processing spikes of 0 or 1.
+    This allows SNNs to excel at processing time-series information.
+    However, most SNNs use the Leaky Integrate-and-Fire (LIF) model, which has a fixed time constant, limiting their ability to represent different temporal characteristics.
+    Recent studies have introduced trainable time constants in LIF models, improving representation.
+    Despite these improvements, training still requires data with various time scales.
+    This study proposes a SNN with dynamically changing parameters, including time constants, allowing it to adapt to multiple time scales by training on a single time scale.
+    The proposed method maintains high accuracy with time-series data of different time scales and is robust against changes in time scales within the input data.
 }
 
 \date{} % 日付を出力しない
