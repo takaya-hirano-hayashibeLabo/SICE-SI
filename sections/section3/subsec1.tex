@@ -1,10 +1,10 @@
 \makeatletter % @が使える
 \subsection{実験1 SNNの内部状態ダイナミクスのタイムスケーリング評価}
-ランダムな値で重みを初期化したSNNに対し, 基準となるスパイク列$\bm{o_{base}}$と基準から$a$倍のタイムスケーリングしたスパイク列$\bm{o_{scaled}}$を入力する.
-$\bm{o_{base}},~\bm{o_{scaled}}$が入力されたときの最終層の内部状態$\bm{v_{base}}, ~ \bm{v_{scaled}}$を比較する.
-このとき, \refeqn{sec2:eq:ideal_laplace}の条件をSNNに与えることで$\bm{v_{scaled}}$が$\bm{v_{base}}$に近づくことを実験的に示す.
+ランダムな値で重みを初期化したSNNに対し, 基準となるスパイク列$\bm{o(t)}$と$a$倍のタイムスケーリングしたスパイク列$\bm{o(at)}$を入力する.
+その後, $\bm{o(t)},~\bm{o(at)}$が入力されたときの最終層におけるそれぞれの内部状態を比較する.
+このとき, \refeqn{sec2:eq:ideal_laplace}の条件をSNNに与えることで, 提案手法$\bm{v_{proposed}(t)}$が理想的な内部状態$\bm{v(at)}$に近づくことを示す (\textbf{\Fig{sec2:fig:inspike}}).
 SNNは入出力を1次元とし, ノード数8の全結合層を2層持つモデルを用いた.
-ランダムに生成した100通りのスパイク$o(t)$を入力し, $v(at)$に対する$v_{LIF}(t), ~ v_{proposed}(t)$それぞれの平均二乗誤差 (MSE, Mean Squared Error) を計測した.
+ランダムに生成した100通りのスパイク$\bm{o(t)}$を入力し, $\bm{v(at)}$に対する$\bm{v_{LIF}(t)}, ~ \bm{v_{proposed}(t)}$それぞれの平均二乗誤差 (MSE, Mean Squared Error) を計測した.
 SNNのそれぞれのパラメータを\Table{sec3:tab:exp1snn}に示す.
 
 
