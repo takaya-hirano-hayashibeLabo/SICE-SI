@@ -178,7 +178,7 @@
 
     % もしtitleが定義されているならtitleを表示
     \ifx\@title\@empty\else
-        \fontsize{16pt}{32pt}\selectfont
+        \fontsize{15pt}{32pt}\selectfont
         \@title
         \par
     \fi
