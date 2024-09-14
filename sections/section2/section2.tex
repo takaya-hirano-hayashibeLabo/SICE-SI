@@ -3,11 +3,12 @@
 本手法で用いるモデル構造を\Fig{sec2:fig:model}に示す.
 本モデルは大きく2つの構成に分かれる.
 \begin{itemize}
-    \item SNNの内部状態ダイナミクスを決定する時定数・膜抵抗の推定器
-    \item SNN推論器
+    \item SNNの時定数・膜抵抗を推定する線形回帰モデル
+    \item SNNを用いた推論モデル
 \end{itemize}
-SNNの内部状態ダイナミクスを決定する時定数や膜抵抗は, 推論時には固定した値を用いることが多い\cite{ParametricSNN}\cite{zheng2024temporal}.
-本研究ではこれらのパラメータの逐次推定器を用いることで, SNNが基準となるタイムスケールの学習のみによって, 多様なタイムスケールでの推論が可能になることを示す.
+SNNの内部状態ダイナミクスを決定する時定数や膜抵抗は, 推論時には固定した値を用いることが多い\cite{zheng2024temporal}\cite{ParametricSNN}.
+本研究では, これらのパラメータを線形回帰モデルによって推定し動的に変動させる.
+これにより, SNNを用いた推論モデルは, 基準となるタイムスケールのみの学習で, 多様なタイムスケールに対する推論が可能となる.
 \input{sections/section2/fig.tex}
 \input{sections/section2/subsec1.tex}
 \input{sections/section2/subsec2.tex}

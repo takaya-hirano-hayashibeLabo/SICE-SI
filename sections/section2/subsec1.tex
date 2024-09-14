@@ -1,46 +1,46 @@
 \makeatletter % @が使える
 \subsection{Spiking Neural Network}
 Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣し, 0か1のスパイク値を入出力とするニューラルネットワークである.
-時刻$t$における第$l-1$層から$l$層のSNNへの入力スパイク$\bm{o_t^{l-1}}$は, 以下の3つのステップで処理され, 次の第$l+1$層へ出力される (\Fig{sec2:fig:snn}).
+時刻$t$における第$l-1$層から$l$層のSNNへの入力スパイク$\bm{o^{l-1}(t)}$は, 以下の3つのステップで処理され, 次の第$l+1$層へ出力される (\Fig{sec2:fig:snn}).
 
 \begin{enumerate}
-    \item 入力スパイク$\bm{o_t^{l-1}}$への重み付け
+    \item 入力スパイク$\bm{o^{l-1}(t)}$への重み付け
     \item 入力に基づくSNNの内部状態の更新
-    \item 内部状態に基づくスパイク$\bm{o_t^l}$の出力
+    \item 内部状態に基づくスパイク$\bm{o^l(t)}$の出力
 \end{enumerate}
 
 
-まず, SNNへ入力されたスパイク$\bm{o_t^{l-1}}$は\refeqn{eq:input_spike}によって重み付けされシナプス電流$\bm{i_t^l}$へ変換される.
+まず, SNNへ入力されたスパイク$\bm{o^{l-1}(t)}$は\refeqn{eq:input_spike}によって重み付けされシナプス電流$\bm{i^l(t)}$へ変換される.
 
 \begin{equation}
-    \bm{i_t^l} = \bm{W^l}\bm{o_t^{l-1}} + \bm{b^l}
+    \bm{i^l(t)} = \bm{W^l}\bm{o^{l-1}(t)} + \bm{b^l}
     \label{eq:input_spike}
 \end{equation}
 ここで, $\bm{W^l}, \bm{b^l}$はそれぞれ第$l$層のニューラルネットの重みとバイアスである.
 
-次に, 第$l$層のSNNの内部状態$\bm{v_t^l}$は, 神経細胞の活動をモデル化したLeaky Integrate-and-Fire (LIF) モデル (\refeqn{eq:lif}) によって更新される.
+次に, 第$l$層のSNNの内部状態$\bm{v^l(t)}$は, 神経細胞の活動をモデル化したLeaky Integrate-and-Fire (LIF) モデル (\refeqn{eq:lif}) によって更新される.
 
 \begin{equation}
-    {\tau}\frac{d\bm{v_t^l}}{dt}=-(\bm{v_{t-1}^l}-v_{rest})+r\bm{i_t^l}
+    {\tau}\frac{d\bm{v^l(t)}}{dt}=-(\bm{v^l({t-1})}-v_{rest})+r\bm{i^l(t)}
     \label{eq:lif}
 \end{equation}
 ここで, $\tau$は神経細胞の時定数, $v_{rest}$は内部状態の初期状態, $r$は神経細胞の膜抵抗である.
 
-最後に, 内部状態$v_t^l$が一定の閾値$v_{th}$を超えたときに出力スパイク$\bm{o_t^l}$が1となって出力される (\refeqn{eq:outputSpike}).
+最後に, 内部状態$v^l(t)$が一定の閾値$v_{th}$を超えたときに出力スパイク$\bm{o^l(t)}$が1となって出力される (\refeqn{eq:outputSpike}).
 また, 閾値を超えた内部状態は初期状態へとリセットされる (\refeqn{eq:outputSpike2}).
 \begin{equation}
     \begin{split}
-      \bm{o_t^{l}}&=\left\{
+      \bm{o(t)^{l}}&=\left\{
         \begin{alignedat}{2}
-          1 &\:(\bm{v_t^l}{\geq}v_{th})\\
-          0 &\:(\bm{v_t^l}{\leq}v_{th})
+          1 &\:(\bm{v^l(t)}{\geq}v_{th})\\
+          0 &\:(\bm{v^l(t)}{\leq}v_{th})
         \end{alignedat}
       \right. 
     \end{split} \label{eq:outputSpike}
   \end{equation}
   \begin{equation}
     \begin{split}
-      \bm{v_t^l}&=h(\bm{v_t^l})\\
+      \bm{v^l(t)}&=h(\bm{v^l(t)})\\
     where\\
     h(x)&=\left\{
       \begin{alignedat}{2}
