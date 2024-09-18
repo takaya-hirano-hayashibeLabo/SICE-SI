@@ -1,51 +1,51 @@
 \makeatletter % @が使える
 \subsection{Spiking Neural Network}
 Spiking Neural Network (SNN) は脳の神経細胞のダイナミクスを模倣し, 0か1のスパイク値を入出力とするニューラルネットワークである.
-時刻$t$における第$l-1$層から$l$層のSNNへの入力$\bm{o^{l-1}(t)}$は, \Fig{sec2:fig:snn}に示すように処理され, 次の第$l+1$層へ出力される.
+時刻$t$における第$l-1$層から$l$層のSNNへの入力$\bm{o}^{l-1}\left(t\right)$は, \Fig{sec2:fig:snn}に示すように処理され, 次の第$l+1$層へ出力される.
 
 % \begin{enumerate}
-%     \item 入力スパイク$\bm{o^{l-1}(t)}$への重み付け
+%     \item 入力スパイク$\bm{o^{l-1}\left(t\right)}$への重み付け
 %     \item 入力に基づくSNNの内部状態の更新
-%     \item 内部状態に基づくスパイク$\bm{o^l(t)}$の出力
+%     \item 内部状態に基づくスパイク$\bm{o^l\left(t\right)}$の出力
 % \end{enumerate}
 
 
-まず, SNNへ入力されたスパイク$\bm{o^{l-1}(t)}$は\refeqn{eq:input_spike}によって重み付けされシナプス電流$\bm{i^l(t)}$へ変換される.
+まず, SNNへ入力されたスパイク$\bm{o}^{l-1}\left(t\right)$は\refeqn{eq:input_spike}によって重み付けされシナプス電流$\bm{i}^l\left(t\right)$へ変換される.
 
 \begin{equation}
-    \bm{i^l(t)} = \bm{W^l}\bm{o^{l-1}(t)} + \bm{b^l}
+    \bm{i}^l\left(t\right) = \bm{W}^l\bm{o}^{l-1}\left(t\right) + \bm{b}^l
     \label{eq:input_spike}
 \end{equation}
-ここで, $\bm{W^l}, \bm{b^l}$はそれぞれ第$l$層のニューラルネットワークの重みとバイアスである.
+ここで, $\bm{W}^l, \bm{b}^l$はそれぞれ第$l$層のニューラルネットワークの重みとバイアスである.
 
-次に, 第$l$層のSNNの内部状態$\bm{v^l(t)}$は, 神経細胞の活動をモデル化したLeaky Integrate-and-Fire (LIF) モデル (\refeqn{eq:lif}) によって更新される.
+次に, 第$l$層のSNNの内部状態$\bm{v}^l\left(t\right)$は, 神経細胞の活動をモデル化したLeaky Integrate-and-Fire (LIF) モデル (\refeqn{eq:lif}) によって更新される.
 
 \begin{equation}
-    {\tau}\frac{d\bm{v^l(t)}}{dt}=-(\bm{v^l({t-1})}-v_{rest})+r\bm{i^l(t)}
+    {\tau}\frac{d\bm{v}^l\left(t\right)}{dt}=-\left(\bm{v}^l\left({t-1}\right)-v_{rest}\right)+r\bm{i}^l\left(t\right)
     \label{eq:lif}
 \end{equation}
 ここで, $\tau$は神経細胞の時定数, $v_{rest}$は内部状態の初期状態, $r$は神経細胞の膜抵抗である.
 
-最後に, 内部状態$v^l(t)$が一定の閾値$v_{th}$を超えたときに出力スパイク$\bm{o^l(t)}$が1となって出力される (\refeqn{eq:outputSpike}).
+最後に, 内部状態$\bm{v}^l\left(t\right)$が一定の閾値$v_{th}$を超えたときに出力スパイク$\bm{o}^l\left(t\right)$が1となって出力される (\refeqn{eq:outputSpike}).
 また, 閾値を超えた内部状態は初期状態へとリセットされる (\refeqn{eq:outputSpike2}).
 \begin{equation}
     \begin{split}
-      \bm{o(t)^{l}}&=\left\{
+      \bm{o}\left(t\right)^{l}&=\left\{
         \begin{alignedat}{2}
-          1 &\:(\bm{v^l(t)}{\geq}v_{th})\\
-          0 &\:(\bm{v^l(t)}{<}v_{th})
+          1 &\:\left(\bm{v}^l\left(t\right){\geq}v_{th}\right)\\
+          0 &\:\left(\bm{v}^l\left(t\right){<}v_{th}\right)
         \end{alignedat}
       \right. 
     \end{split} \label{eq:outputSpike}
   \end{equation}
   \begin{equation}
     \begin{split}
-      \bm{v^l(t)}&=h(\bm{v^l(t)})\\
+      \bm{v}^l\left(t\right)&=h\left(\bm{v}^l\left(t\right)\right)\\
     where\\
-    h(x)&=\left\{
+    h\left(x\right)&=\left\{
       \begin{alignedat}{2}
-        &v_{rset} &\:(x{\geq}v_{th})\\
-        &x &\:(x{<}v_{th})
+        &v_{rset} &\:\left(x{\geq}v_{th}\right)\\
+        &x &\:\left(x{<}v_{th}\right)
       \end{alignedat}
     \right. 
     \end{split} \label{eq:outputSpike2}

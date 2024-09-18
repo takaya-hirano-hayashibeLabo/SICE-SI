@@ -1,40 +1,40 @@
 \makeatletter % @が使える
 \subsection{入力の時間変動と内部状態の関係}
 
-入力スパイク列$o(t)$のタイムスケール変動に対して, 時定数$\tau$と膜抵抗$r$を変化させることで, SNNの内部状態$v(t)$のダイナミクスの変化を抑えられることを示す (\Fig{sec2:fig:inspike}).
+入力スパイク列$o\left(t\right)$のタイムスケール変動に対して, 時定数$\tau$と膜抵抗$r$を変化させることで, SNNの内部状態$v\left(t\right)$のダイナミクスの変化を抑えられることを示す (\Fig{sec2:fig:inspike}).
 まず, 入力スパイク列のタイムスケールが変動したときの理想的なSNN内部状態$v$についてである.
 理想的には, 入力の時間方向への$a$倍のスケーリングに対して, SNN内部状態のダイナミクスは変化せず, 単純な時間方向の伸縮のみが生じると考えられる.
 LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のようになる.
 
 \begin{equation}
     \begin{split}
-        % \tau \frac{dv(at)}{dt} &= -(v(at)-v_{rest}) + ri(at)\\
-        \tau \frac{dv(at)}{dt} &= -(v(at)-v_{rest}) + r(w o(at) + b)
+        % \tau \frac{dv\left(at)}{dt} &= -\left(v\left(at)-v_{rest}) + ri\left(at)\\
+        \tau \frac{dv\left(at\right)}{dt} &= -\left(v\left(at\right)-v_{rest}\right) + r\left(w o\left(at\right) + b\right)
     \end{split}
     \label{sec2:eq:ideal}
 \end{equation}
 
-ここで, $o(at),~v(at)$はそれぞれ時間方向に$a$倍された入力スパイクと内部状態である.
+ここで, $o\left(at\right),~v\left(at\right)$はそれぞれ時間方向に$a$倍された入力スパイクと内部状態である.
 また, $\tau,~r$は理想状態における時定数と膜電位であり, 簡単のためSNNの1つのニューロンについてのみ考える.
 ラプラス変換により\refeqn{sec2:eq:ideal}を$s$領域に変換すると\refeqn{sec2:eq:ideal_laplace}となる.
 
 \begin{equation}
     \begin{split}
-        V(\frac{s}{a}) &= \frac{1}{\tau s+1}(\frac{a v_{rest}}{s}+r w O(\frac{s}{a})+\frac{ar}{s}b)\\
-        &= \frac{1}{\tau s+1}(\frac{a v_{rest}}{s}+r w +\frac{ar}{s}b)
+        V\left(\frac{s}{a}\right) &= \frac{1}{\tau s+1}\left(\frac{a v_{rest}}{s}+r w O\left(\frac{s}{a}\right)+\frac{ar}{s}b\right)\\
+        &= \frac{1}{\tau s+1}\left(\frac{a v_{rest}}{s}+r w +\frac{ar}{s}b\right)
     \end{split}
     \label{sec2:eq:ideal_laplace}
 \end{equation}
-ここで, $v(t),~o(t)$のラプラス変換を$V(s), ~ O(s)$とする.
-さらに, 入力スパイク列$o(t)$は0か1の離散パルス値であり, ディラックのデルタ関数$\delta(t)$で表現できる\cite{Henkes2024}ため$O(s)\simeq1$と近似している.
+ここで, $v\left(t\right),~o\left(t\right)$のラプラス変換を$V\left(s\right), ~ O\left(s\right)$とする.
+さらに, 入力スパイク列$o\left(t\right)$は0か1の離散パルス値であり, ディラックのデルタ関数$\delta\left(t\right)$で表現できる\cite{Henkes2024}ため$O\left(s\right)\simeq1$と近似している.
 
 次に, 実際のSNNの内部状態についてである.
 実際の内部状態は, 入力に対して単純なタイムスケーリングが生じるとは限らない.
-そのため, 内部状態は$v(t)$と表され, LIFモデルを用いると\refeqn{sec2:eq:actual}のように表せる.
+そのため, 内部状態は$v\left(t\right)$と表され, LIFモデルを用いると\refeqn{sec2:eq:actual}のように表せる.
 \begin{equation}
     \begin{split}
-        % \tau \frac{dv(at)}{dt} &= -(v(at)-v_{rest}) + ri(at)\\
-        \tau' \frac{dv(t)}{dt} &= -(v(t)-v_{rest}) + r'(w o(at) + b)
+        % \tau \frac{dv\left(at\right)}{dt} &= -\left(v\left(at\right)-v_{rest}\right) + ri\left(at\right)\\
+        \tau' \frac{dv\left(t\right)}{dt} &= -\left(v\left(t\right)-v_{rest}\right) + r'\left(w o\left(at\right) + b\right)
     \end{split}
     \label{sec2:eq:actual}
 \end{equation}
@@ -42,14 +42,14 @@ LIFモデルを用いて理想状態を表すと\refeqn{sec2:eq:ideal}のよう�
 理想的な場合と同様に, \refeqn{sec2:eq:actual}に対してラプラス変換を行うと\refeqn{sec2:eq:actual_laplace}となる.
 \begin{equation}
     \begin{split}
-        V(s) &= \frac{1}{\tau' s+1}(\frac{v_{rest}}{s}+\frac{r'}{a} w O(\frac{s}{a})+\frac{r'}{s}b)
+        V\left(s\right) &= \frac{1}{\tau' s+1}\left(\frac{v_{rest}}{s}+\frac{r'}{a} w O\left(\frac{s}{a}\right)+\frac{r'}{s}b\right)
     \end{split}
     \label{sec2:eq:actual_laplace}
 \end{equation}
-さらに, \refeqn{sec2:eq:actual_laplace}における$s$を$s/a$に置き換え, $O(s)\simeq1$の近似を用いると, \refeqn{sec2:eq:actual_laplace2}となる.
+さらに, \refeqn{sec2:eq:actual_laplace}における$s$を$s/a$に置き換え, $O\left(s\right)\simeq1$の近似を用いると, \refeqn{sec2:eq:actual_laplace2}となる.
 \begin{equation}
     \begin{split}
-        V(\frac{s}{a}) &= \frac{1}{\frac{\tau'}{a} s+1}(\frac{av_{rest}}{s}+\frac{r'}{a} w+\frac{a r'}{s}b)
+        V\left(\frac{s}{a}\right) &= \frac{1}{\frac{\tau'}{a} s+1}\left(\frac{av_{rest}}{s}+\frac{r'}{a} w+\frac{a r'}{s}b\right)
     \end{split}
     \label{sec2:eq:actual_laplace2}
 \end{equation}
