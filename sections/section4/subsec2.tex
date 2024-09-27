@@ -1,7 +1,7 @@
 \makeatletter % @が使える
 \subsection{実験2 : 入力の時間変動とモデル性能}
 
-各モデルの学習後のテスト精度と1epochあたりの学習時間を\Table{sec4:tab:exp2}に示す.
+各モデル学習後のタイムスケール$a=10$における精度と1epochあたりの学習時間を\Table{sec4:tab:exp2}に示す.
 提案手法のモデルは他のモデルと比較して, 短い学習時間であった.
 これは提案手法は基準のタイムスケールのみを学習するためである.
 提案手法は入力に対して, 時定数と膜電位を推定する回帰モデルを生成する必要があるが, その計算時間は数秒程度であり, ニューラルネットワークの学習時間に対して非常に短いため無視できる.
@@ -12,12 +12,12 @@
     \label{sec4:tab:exp2}
     \begin{tabular}{cccc}
         \hline
-        \textbf{model}&\textbf{test accuracy}&\textbf{seconds/epoch}\\
+        \textbf{model}&\textbf{accuracy ($a=10$)}&\textbf{seconds/epoch}\\
         \hline
-        LSTM&$0.92\pm0.07$&$120.1\pm5.8$\\
-        SNN&$0.86\pm0.06$&$209.4\pm7.2$\\
-        ParametricSNN&$0.88\pm0.08$&$224.4\pm7.8$\\
-        Proposed method&$0.92\pm0.09$&$94.8\pm3.0$\\
+        LSTM&$0.65\pm0.02$&$120.1\pm5.8$\\
+        SNN&$0.69\pm0.02$&$209.4\pm7.2$\\
+        ParametricSNN&$0.76\pm0.02$&$224.4\pm7.8$\\
+        Proposed method&$0.90\pm0.01$&$94.8\pm3.0$\\
     \end{tabular}
 \end{table}
 
